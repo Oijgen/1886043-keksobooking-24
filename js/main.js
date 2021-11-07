@@ -1,7 +1,7 @@
 const NUMBER_OF_APARTMENTS = 10;
 
 const LOCATION_START_LAT = 35.65;
-const LOCATION_END_LAT = 35.70;
+const LOCATION_END_LAT = 35.7;
 const LOCATION_START_LNG = 139.7;
 const LOCATION_END_LNG = 139.8;
 
@@ -38,19 +38,9 @@ const DESCRIPTIONS = [
   'возле парка',
 ];
 
-const CHECK_INS_OUTS = [
-  '12:00',
-  '13:00',
-  '14:00',
-];
+const CHECK_INS_OUTS = ['12:00', '13:00', '14:00'];
 
-const TYPES = [
-  'palace',
-  'flat',
-  'house',
-  'bungalow',
-  'hotel',
-];
+const TYPES = ['palace', 'flat', 'house', 'bungalow', 'hotel'];
 
 const FEATURES = [
   'wifi',
@@ -67,19 +57,21 @@ const PHOTOS = [
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg',
 ];
 
-let counter = 0;
+let counterPrefix = 0;
 let stringZero = 0;
 
-const avatarFunction = function() {
-  counter++;
-  if (counter>9) {
+const avatarFunction = function () {
+  counterPrefix++;
+  if (counterPrefix > 9) {
     stringZero++;
-    counter = 0;
+    counterPrefix = 0;
   }
-  return {avatar:VAR_IMG + String(stringZero) + String(counter) + VAR_PNG};
+  return {
+    avatar: `${VAR_IMG}${stringZero}${counterPrefix}${VAR_PNG}`,
+  };
 };
 
-function getRandomInt (StartVar, EndVar) {
+function getRandomInt(StartVar, EndVar) {
   const lower = Math.ceil(Math.min(Math.abs(StartVar), Math.abs(EndVar)));
   const upper = Math.floor(Math.max(Math.abs(StartVar), Math.abs(EndVar)));
   const result = Math.random() * (upper - lower + 1) + lower;
@@ -94,17 +86,16 @@ function getRandomFloat(StartVar, EndVar, digits = 1) {
 }
 
 function getRandomArrayElement(array, numberOfElements) {
-  return array[getRandomInt(0,numberOfElements-1)];
+  return array[getRandomInt(0, numberOfElements - 1)];
 }
 
 function getRandomArray(sourseArray) {
   const arrayLength = sourseArray.length - 1;
-  const maxI = getRandomInt(1,arrayLength);
+  const maxI = getRandomInt(1, arrayLength);
   const tempArray = [];
-  // eslint-disable-next-line id-length
-  for (let i=0; i < maxI; i++) {
-    const tempIndex = getRandomInt(1,arrayLength);
-    const tempVar = sourseArray [tempIndex];
+  for (let varI = 0; varI < maxI; varI++) {
+    const tempIndex = getRandomInt(1, arrayLength);
+    const tempVar = sourseArray[tempIndex];
     if (!tempArray.includes(tempVar)) {
       tempArray.push(tempVar);
     }
@@ -114,32 +105,36 @@ function getRandomArray(sourseArray) {
 
 function getLocation() {
   return {
-    lat: getRandomFloat(LOCATION_START_LAT,LOCATION_END_LAT, 2),
-    lng: getRandomFloat(LOCATION_START_LNG,LOCATION_END_LNG, 2)};
+    lat: getRandomFloat(LOCATION_START_LAT, LOCATION_END_LAT, 5),
+    lng: getRandomFloat(LOCATION_START_LNG, LOCATION_END_LNG, 5),
+  };
 }
 
-const objectFactory = function() {
+const objectFactory = function () {
+  const getLocationLocal = getLocation();
   return {
-    author:avatarFunction(),
-    offer:{
-      title: getRandomArrayElement(TITLES,NUMBER_OF_APARTMENTS),
-      address:`${getLocation().lat},${getLocation().lng}`,
-      price: getRandomInt(START_PRICE,START_PRICE*3),
-      type:getRandomArrayElement(TYPES,TYPES.length),
-      rooms: getRandomInt(1,NUMB_OF_ROOMS),
-      guests: getRandomInt(1,NUMB_OF_GUESTS),
-      checkin: getRandomArrayElement(CHECK_INS_OUTS,CHECK_INS_OUTS.length),
-      checkout:getRandomArrayElement(CHECK_INS_OUTS,CHECK_INS_OUTS.length),
-      features:getRandomArray(FEATURES),
+    author: avatarFunction(),
+    offer: {
+      title: getRandomArrayElement(TITLES, NUMBER_OF_APARTMENTS),
+      address: `${getLocationLocal.lat}, ${getLocationLocal.lng}`,
+      price: getRandomInt(START_PRICE, START_PRICE * 3),
+      type: getRandomArrayElement(TYPES, TYPES.length),
+      rooms: getRandomInt(1, NUMB_OF_ROOMS),
+      guests: getRandomInt(1, NUMB_OF_GUESTS),
+      checkin: getRandomArrayElement(CHECK_INS_OUTS, CHECK_INS_OUTS.length),
+      checkout: getRandomArrayElement(CHECK_INS_OUTS, CHECK_INS_OUTS.length),
+      features: getRandomArray(FEATURES),
       description: getRandomArrayElement(DESCRIPTIONS, DESCRIPTIONS.length),
-      photos:getRandomArray(PHOTOS),
+      photos: getRandomArray(PHOTOS),
     },
-    location:getLocation(),
+    location: getLocationLocal,
   };
 };
 
+const registerOfApartment = Array.from(
+  { length: NUMBER_OF_APARTMENTS },
+  objectFactory,
+);
 
-// eslint-disable-next-line no-unused-vars
-const registerOfApartment = Array.from({length: NUMBER_OF_APARTMENTS}, objectFactory);
-
-//console.log(registerOfApartment);
+// eslint-disable-next-line no-console
+console.log(registerOfApartment);

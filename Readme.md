@@ -1,7 +1,7 @@
 # Личный проект «Кексобукинг»
 
-- Студент: [Евгений Рехлецкий](https://up.htmlacademy.ru/javascript/24/user/1886043).
-- Наставник: [Максим Прусаков](https://up.htmlacademy.ru/javascript/24/user/83559).
+* Студент: [Евгений Рехлецкий](https://up.htmlacademy.ru/javascript/24/user/1886043).
+* Наставник: [Максим Прусаков](https://up.htmlacademy.ru/javascript/24/user/83559).
 
 ---
 

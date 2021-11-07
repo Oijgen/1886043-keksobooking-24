@@ -12,50 +12,12 @@ const START_PRICE = 2000;
 const VAR_IMG = 'img/avatars/user';
 const VAR_PNG = '.png';
 
-const TITLES = [
-  '1-комнатная',
-  '2-комнатная',
-  '3-комнатная',
-  '4-комнатная',
-  'студия',
-  'кавалерка',
-  'хостел',
-  'VIP',
-  'люкс',
-  'президентский номер',
-];
-
-const DESCRIPTIONS = [
-  'большая',
-  'чистая',
-  'светлая',
-  'просторная',
-  'пентхауз',
-  'ремонт',
-  'прекрасный вид',
-  'нет соседей',
-  'возле метро',
-  'возле парка',
-];
-
-const CHECK_INS_OUTS = ['12:00', '13:00', '14:00'];
-
-const TYPES = ['palace', 'flat', 'house', 'bungalow', 'hotel'];
-
-const FEATURES = [
-  'wifi',
-  'dishwasher',
-  'parking',
-  'washer',
-  'elevator',
-  'conditioner',
-];
-
-const PHOTOS = [
-  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg',
-  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg',
-  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg',
-];
+import {TITLES} from './titles.js';
+import {DESCRIPTIONS} from './descriptions.js';
+import {CHECK_INS_OUTS} from './check_ins_outs.js';
+import {TYPES} from './types.js';
+import {FEATURES} from './features.js';
+import {PHOTOS} from './photos.js';
 
 let counter = 0;
 let stringFirstNumber = 0;

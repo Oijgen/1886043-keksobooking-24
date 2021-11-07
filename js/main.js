@@ -57,17 +57,17 @@ const PHOTOS = [
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg',
 ];
 
-let counterPrefix = 0;
-let stringZero = 0;
+let counter = 0;
+let stringFirstNumber = 0;
 
 const avatarFunction = function () {
-  counterPrefix++;
-  if (counterPrefix > 9) {
-    stringZero++;
-    counterPrefix = 0;
+  counter++;
+  if (counter > 9) {
+    stringFirstNumber++;
+    counter = 0;
   }
   return {
-    avatar: `${VAR_IMG}${stringZero}${counterPrefix}${VAR_PNG}`,
+    avatar: `${VAR_IMG}${stringFirstNumber}${counter}${VAR_PNG}`,
   };
 };
 
@@ -131,10 +131,4 @@ const objectFactory = function () {
   };
 };
 
-const registerOfApartment = Array.from(
-  { length: NUMBER_OF_APARTMENTS },
-  objectFactory,
-);
-
-// eslint-disable-next-line no-console
-console.log(registerOfApartment);
+Array.from({ length: NUMBER_OF_APARTMENTS }, objectFactory);

@@ -1,3 +1,3 @@
-import {arrayOfNotRealInformation} from './generator.js';
+import {arrayOfNotRealInformation} from './dataGenerator.js';
 
 arrayOfNotRealInformation;
